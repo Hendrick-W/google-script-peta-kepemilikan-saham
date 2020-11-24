@@ -1,0 +1,27 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(go);
+
+  function drawTable(hasilKepemilikan) {
+    var data = google.visualization.arrayToDataTable(hasilKepemilikan);
+
+    var options_stacked = {
+      isStacked: true,
+      title: hasilKepemilikan[0][0],
+      height: 500,
+      legend: { position: 'bottom', maxLines: 5 },
+      vAxis: {
+        minValue: 0,
+        ticks: [0, .3, .6, .9, 1]
+      }
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById("table_div"));
+
+    chart.draw(data, options_stacked);
+  }
+  function go() {
+    google.script.run.withSuccessHandler(drawTable).hasilKepemilikanSaham("bbca");
+  }
+</script>
